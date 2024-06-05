@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MAUI_NewsApp.Data.Services;
+using MAUI_NewsApp.UI.ViewModels;
+using MAUI_NewsApp.UI.Views;
+using Microsoft.Extensions.Logging;
 
 namespace MAUI_NewsApp.UI
 {
@@ -9,10 +12,18 @@ namespace MAUI_NewsApp.UI
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .RegisterViews()
+                .RegisterAppServices()
+                .RegisterViewModels()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("NotoSerif-Bold.ttf", "NotoSerifBold");
+                    fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
+                    fonts.AddFont("Poppins-SemiBold.ttf", "PoppinsSemibold");
+                    fonts.AddFont("Poppins-Regular.ttf", "Poppins");
+                    fonts.AddFont("MaterialIconsOutlined-Regular.otf", "Material");
                 });
 
 #if DEBUG
@@ -20,6 +31,28 @@ namespace MAUI_NewsApp.UI
 #endif
 
             return builder.Build();
+        }
+
+        public static MauiAppBuilder RegisterViews(this MauiAppBuilder builder)
+        {
+            builder.Services.AddTransient<HomePage>();
+            builder.Services.AddTransient<CategoriesPage>();
+
+            return builder;
+        }
+        public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder builder)
+        {
+            builder.Services.AddSingleton<INewsService, DummyService>();
+
+            return builder;
+        }
+
+        public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
+        {
+            builder.Services.AddTransient<IHomeViewModel, HomeViewModel>();
+            builder.Services.AddTransient<ICategoriesViewModel, CategoriesViewModel>();
+
+            return builder;
         }
     }
 }
