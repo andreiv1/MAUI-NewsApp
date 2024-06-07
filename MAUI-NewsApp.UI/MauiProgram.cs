@@ -37,12 +37,13 @@ namespace MAUI_NewsApp.UI
         {
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<CategoriesPage>();
+            builder.Services.AddTransient<ArticlePage>();
 
             return builder;
         }
         public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder builder)
         {
-            builder.Services.AddSingleton<INewsService, DummyService>();
+            builder.Services.AddSingleton<INewsService, NewsDataIoService>();
 
             return builder;
         }
@@ -51,6 +52,7 @@ namespace MAUI_NewsApp.UI
         {
             builder.Services.AddTransient<IHomeViewModel, HomeViewModel>();
             builder.Services.AddTransient<ICategoriesViewModel, CategoriesViewModel>();
+            builder.Services.AddTransient<IArticleViewModel, ArticleViewModel>();
 
             return builder;
         }
