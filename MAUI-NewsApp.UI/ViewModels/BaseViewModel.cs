@@ -1,4 +1,4 @@
-﻿using MAUI_NewsApp.Data.DTO;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
-    public interface ICategoriesViewModel
+    public abstract partial class BaseViewModel : ObservableObject
     {
-        public ICollection<Category> Categories { get; }
     }
 }

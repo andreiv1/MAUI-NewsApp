@@ -1,4 +1,4 @@
-﻿using MAUI_NewsApp.Data.Models;
+﻿using MAUI_NewsApp.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,6 @@ namespace MAUI_NewsApp.UI.ViewModels
 {
     public interface IHomeViewModel
     {
-        public ICollection<string> Keywords { get; }
         public ICollection<Article> LatestArticles { get; }
     }
 }
