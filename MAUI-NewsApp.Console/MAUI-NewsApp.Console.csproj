@@ -8,4 +8,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MAUI-NewsApp.Data\MAUI-NewsApp.Data.csproj" />
+  </ItemGroup>
+
 </Project>
