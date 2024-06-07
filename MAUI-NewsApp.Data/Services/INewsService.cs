@@ -1,4 +1,4 @@
-﻿using MAUI_NewsApp.Data.Models;
+﻿using MAUI_NewsApp.Data.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ namespace MAUI_NewsApp.Data.Services
 {
     public interface INewsService
     {
-        public ICollection<string> GetKeywords();
-        public ICollection<Category> GetCategories();
-        public ICollection<Article> GetLatestArticles();
-        public ICollection<Article> GetArticlesByCategory(string category);
-        public ICollection<Article> GetArticlesByTag(string tag);
+        public Task<ICollection<string>> GetKeywords();
+        public Task<ICollection<Category>> GetCategories();
+        public Task<ICollection<Article>> GetLatestArticles();
+        public Task<ICollection<Article>> GetArticlesByCategory(string category);
+        public Task<ICollection<Article>> GetArticlesByTag(string tag);
     }
 }
