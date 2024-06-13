@@ -17,7 +17,7 @@ namespace MAUI_NewsApp.UI.Models
 
         public List<string> Categories { get; set; }
 
-        public DateTime PublishedAt { get; set; }
+        public DateTime? PublishedAt { get; set; }
 
         public static Article FromDTO(ArticleDTO dto) => new()
         {
@@ -27,7 +27,7 @@ namespace MAUI_NewsApp.UI.Models
             Link = dto.Link,
             ImageURL = dto.ImageURL,
             Categories = dto.Category,
-            PublishedAt = dto.PublishedAt ?? DateTime.MinValue
+            PublishedAt = dto.PublishedAt ?? null
         };
 
     }

@@ -1,27 +1,19 @@
-﻿using MAUI_NewsApp.UI.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MAUI_NewsApp.UI.Models;
 
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
     public partial class ArticleViewModel : BaseViewModel, IArticleViewModel
     {
-        private readonly HttpClient httpClient = new();
         public ArticleViewModel()
         {
         }
-        public ArticleViewModel(Article a)
+        public ArticleViewModel(Article article)
         {
-            this.Title = a.Title;
-            this.Description = a.Description;
-            this.ImageURL = a.ImageURL;
-            this.Link = a.Link;
+            Article = article;
         }
 
-        public string Title { get; }
-        public string Description { get; }
-        public string ImageURL { get; }
-        public string Link { get; }
-
-        public string HtmlContent { get; private set; }
+        public Article Article { get; }
     }
 }

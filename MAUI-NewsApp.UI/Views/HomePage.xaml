@@ -19,31 +19,6 @@
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout>
-
-            <!-- START: POPULAR KEYWORDS -->
-            <!--<StackLayout>
-                <Label Text="Popular Keywords"/>
-            </StackLayout>
-
-            <FlexLayout BindableLayout.ItemsSource="{Binding Keywords}"
-                        Wrap="Wrap"
-                        Margin="2,0">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BackgroundColor="#f2f2f2"
-                              BorderColor="Transparent"
-                              CornerRadius="4"
-                              Padding="8,2"
-                              Margin="0,0,4,10">
-                            <Label Text="{Binding .}" VerticalOptions="Center"/>
-                        </Frame>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </FlexLayout>
-            -->
-            <!-- END: POPULAR KEYWORDS -->
-            <!--<BoxView />-->
-
             <!-- START: LATEST NEWS -->
             <StackLayout>
                 <Label Text="Latest News"/>
