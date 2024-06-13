@@ -2,7 +2,7 @@
 
 namespace MAUI_NewsApp.Data.DTO
 {
-    public class Article
+    public class ArticleDTO
     {
         [JsonProperty("article_id")]
         public string? ArticleId { get; set; }

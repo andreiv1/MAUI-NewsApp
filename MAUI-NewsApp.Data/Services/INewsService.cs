@@ -9,10 +9,8 @@ namespace MAUI_NewsApp.Data.Services
 {
     public interface INewsService
     {
-        public Task<ICollection<string>> GetKeywords();
-        public Task<ICollection<Category>> GetCategories();
-        public Task<ICollection<Article>> GetLatestArticles();
-        public Task<ICollection<Article>> GetArticlesByCategory(string category);
-        public Task<ICollection<Article>> GetArticlesByTag(string tag);
+        public Task<ICollection<ArticleDTO>> GetLatestArticles();
+        public Task<ICollection<ArticleDTO>> GetArticlesByCategory(string category);
+        public Task<ICollection<ArticleDTO>> GetArticlesByTag(string tag);
     }
 }

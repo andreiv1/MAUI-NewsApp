@@ -22,7 +22,7 @@ namespace MAUI_NewsApp.UI
 
         public void RegisterRoutes()
         {
-            Routing.RegisterRoute("article", typeof(ArticlePage));
+            Routing.RegisterRoute(nameof(ArticlePage), typeof(ArticlePage));
         }
     }
 }

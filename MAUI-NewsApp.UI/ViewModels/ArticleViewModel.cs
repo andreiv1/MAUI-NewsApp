@@ -1,20 +1,27 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MAUI_NewsApp.UI.Models;
+
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
     public partial class ArticleViewModel : BaseViewModel, IArticleViewModel
     {
-
-        [ObservableProperty]
-        private string link;
-
+        private readonly HttpClient httpClient = new();
         public ArticleViewModel()
         {
         }
+        public ArticleViewModel(Article a)
+        {
+            this.Title = a.Title;
+            this.Description = a.Description;
+            this.ImageURL = a.ImageURL;
+            this.Link = a.Link;
+        }
+
+        public string Title { get; }
+        public string Description { get; }
+        public string ImageURL { get; }
+        public string Link { get; }
+
+        public string HtmlContent { get; private set; }
     }
 }

@@ -1,14 +1,9 @@
-﻿using MAUI_NewsApp.Data.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MAUI_NewsApp.UI.Models;
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
     public interface IHomeViewModel
     {
-        public ICollection<Article> LatestArticles { get; }
+        public ICollection<Article> Articles { get; }
     }
 }

@@ -11,7 +11,7 @@ namespace MAUI_NewsApp.Data.DTO
         public int TotalResults { get; set; }
 
         [JsonProperty("results")]
-        public List<Article>? Results { get; set; }
+        public List<ArticleDTO>? Results { get; set; }
 
         [JsonProperty("nextPage")]
         public string? NextPage { get; set; }

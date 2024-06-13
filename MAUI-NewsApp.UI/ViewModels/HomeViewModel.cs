@@ -1,13 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using MAUI_NewsApp.Data.DTO;
 using MAUI_NewsApp.Data.Services;
-using System;
-using System.Collections.Generic;
+using MAUI_NewsApp.UI.Models;
+using MAUI_NewsApp.UI.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
@@ -25,27 +22,27 @@ namespace MAUI_NewsApp.UI.ViewModels
             });
         }
 
+        private async Task LoadLatestArticles()
+        {
+            foreach(var article in await newsService.GetLatestArticles())
+            {
+                Articles.Add(Article.FromDTO(article));
+            }
+        }
+
+        public ICollection<Article> Articles { get; private set; } = new ObservableCollection<Article>();
 
         [RelayCommand]
-        private void NavigateToArticle(Article article)
+        private async Task OpenArticle(Article article)
         {
+            Debug.WriteLine($"Opening article: {article.Title}");
+
             var query = new Dictionary<string, object>()
             {
                 { "article", article }
             };
 
-            Shell.Current.GoToAsync("article", query);
-
+            await Shell.Current.GoToAsync("ArticlePage", query);
         }
-
-        private async Task LoadLatestArticles()
-        {
-            foreach(var article in await newsService.GetLatestArticles())
-            {
-                LatestArticles.Add(article);
-            }
-        }
-
-        public ICollection<Article> LatestArticles { get; private set; } = new ObservableCollection<Article>();
     }
 }

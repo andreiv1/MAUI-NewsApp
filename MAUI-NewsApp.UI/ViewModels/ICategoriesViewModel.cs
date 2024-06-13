@@ -1,4 +1,5 @@
 ﻿using MAUI_NewsApp.Data.DTO;
+using MAUI_NewsApp.UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

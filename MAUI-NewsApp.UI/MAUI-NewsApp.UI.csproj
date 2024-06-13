@@ -15,7 +15,7 @@
 		<ApplicationTitle>News App</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.maui_newsapp.ui</ApplicationId>
+		<ApplicationId>ro.tmw.maui_newsapp</ApplicationId>
 		<ApplicationIdGuid>aa731f8f-6c25-4e12-89b2-3903dcf1c68a</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -82,10 +82,6 @@
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>
