@@ -19,6 +19,12 @@
             <Label Text="{Binding Article.Description}"
             Margin="20,0"
             FontSize="16"/>
+
+            <Button Text="Read More" 
+                    Margin="20,10"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    TextColor="White"
+                    Command="{Binding OpenLinkCommand}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
