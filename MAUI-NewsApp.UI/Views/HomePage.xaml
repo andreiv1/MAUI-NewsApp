@@ -12,6 +12,17 @@
     </Shell.SearchHandler>
 
     <ContentPage.Resources>
+        <Style TargetType="StackLayout" x:Key="HeaderStack">
+            <Setter Property="Margin" Value="0,16,20,14"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Padding" Value="15,0"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="SectionHeading">
+            <Setter Property="FontFamily" Value="NotoSerifBold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+        </Style>
         <ResourceDictionary>
             <converters:ListToStringConverter x:Key="ListToStringConverter"/>
             <converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
@@ -20,8 +31,8 @@
     <ScrollView>
         <VerticalStackLayout>
             <!-- START: LATEST NEWS -->
-            <StackLayout>
-                <Label Text="Latest News"/>
+            <StackLayout Style="{StaticResource HeaderStack}">
+                <Label Text="Latest News" Style="{StaticResource SectionHeading}" />
             </StackLayout>
 
             <!--<ScrollView Orientation="Vertical">
