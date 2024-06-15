@@ -17,7 +17,7 @@ namespace MAUI_NewsApp.UI.ViewModels
         bool isBusy = false;
 
         [ObservableProperty]
-        bool isRefreshing;
+        bool isRefreshing = false;
 
         private string nextPage;
 
@@ -48,7 +48,7 @@ namespace MAUI_NewsApp.UI.ViewModels
         [RelayCommand]
         private async Task LoadNextArticles()
         {
-            if (IsBusy || nextPage == null)
+            if (IsBusy || nextPage == null || IsRefreshing)
                 return;
 
             IsBusy = true;
@@ -59,6 +59,26 @@ namespace MAUI_NewsApp.UI.ViewModels
                 Articles.Add(Article.FromDTO(article));
             }
             IsBusy = false;
+        }
+
+        [RelayCommand]
+        private async Task RefreshArticles()
+        {
+            Debug.WriteLine("Refreshing articles...");
+            if(IsBusy)
+                return;
+
+            Articles.Clear();
+            nextPage = null;
+            var result = await newsService.GetArticles(country: "ro", language: "ro");
+            nextPage = result.NextPage;
+            foreach (var article in result.Articles)
+            {
+                Articles.Add(Article.FromDTO(article));
+            }
+
+            IsRefreshing = false;
+
         }
 
         [RelayCommand]

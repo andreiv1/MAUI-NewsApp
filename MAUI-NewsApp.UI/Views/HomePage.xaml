@@ -34,9 +34,9 @@
         </StackLayout>
 
 
-        <!--<RefreshView IsRefreshing="{Binding IsRefreshing}" Grid.Row="1"
-     Command="{Binding RefreshCommand}">-->
-        <CollectionView Grid.Row="1"
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Grid.Row="1"
+     Command="{Binding RefreshArticlesCommand}">
+        <CollectionView
             ItemsSource="{Binding Articles}" VerticalScrollBarVisibility="Always" RemainingItemsThreshold="1" RemainingItemsThresholdReachedCommand="{Binding LoadNextArticlesCommand}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Article">
@@ -89,7 +89,7 @@
                 Command="{Binding LoadNextArticlesCommand}"/>
                 </CollectionView.Footer>-->
             </CollectionView>
-        <!--</RefreshView>-->
+        </RefreshView>
 
     </Grid>
 </ContentPage>
