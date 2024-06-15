@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MAUI_NewsApp.Data.Services;
 using MAUI_NewsApp.UI.Models;
 using MAUI_NewsApp.UI.Views;
@@ -12,25 +13,53 @@ namespace MAUI_NewsApp.UI.ViewModels
     {
         private readonly INewsService newsService;
 
+        [ObservableProperty]
+        bool isBusy;
+
+        [ObservableProperty]
+        bool isRefreshing;
+
+        private string nextPage;
+
         public HomeViewModel(INewsService newsService)
         {
             this.newsService = newsService;
 
-            Task.Run(async () =>
-            {
-                await LoadLatestArticles();
-            });
-        }
-
-        private async Task LoadLatestArticles()
-        {
-            foreach(var article in await newsService.GetLatestArticles())
-            {
-                Articles.Add(Article.FromDTO(article));
-            }
+            _ = LoadLatestArticles();
         }
 
         public ICollection<Article> Articles { get; private set; } = new ObservableCollection<Article>();
+
+        private async Task LoadLatestArticles()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+            var result = await newsService.GetArticles(null, "ro", "ro");
+            nextPage = result.NextPage;
+            foreach (var article in result.Articles)
+            {
+                Articles.Add(Article.FromDTO(article));
+            }
+            IsBusy = false;
+        }
+
+        [RelayCommand]
+        private async Task LoadNextArticles()
+        {
+            if (IsBusy || nextPage == null)
+                return;
+
+            IsBusy = true;
+            var result = await newsService.GetArticles(nextPage, "ro", "ro");
+            nextPage = result.NextPage;
+            foreach (var article in result.Articles)
+            {
+                Articles.Add(Article.FromDTO(article));
+            }
+            IsBusy = false;
+        }
 
         [RelayCommand]
         private async Task OpenArticle(Article article)
@@ -44,5 +73,7 @@ namespace MAUI_NewsApp.UI.ViewModels
 
             await Shell.Current.GoToAsync("ArticlePage", query);
         }
+
+        
     }
 }

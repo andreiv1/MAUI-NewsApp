@@ -30,16 +30,14 @@
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout>
-            <!-- START: LATEST NEWS -->
             <StackLayout Style="{StaticResource HeaderStack}">
                 <Label Text="Latest News" Style="{StaticResource SectionHeading}" />
             </StackLayout>
 
-            <!--<ScrollView Orientation="Vertical">
-                <StackLayout Orientation="Vertical" BindableLayout.ItemsSource="{Binding LatestArticles}" BindableLayout.ItemTemplate="{StaticResource ArticleTemplate}"/>
-            </ScrollView>-->
 
-            <CollectionView ItemsSource="{Binding Articles}">
+
+            <CollectionView ItemsSource="{Binding Articles}"
+                            VerticalScrollBarVisibility="Always">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Article">
                         <Border StrokeThickness="0.5">
@@ -71,12 +69,12 @@
                                            Spacing="4"
                                            Grid.Row="1"
                                            Grid.Column="1">
-                                          <Label Text="{Binding Categories, Converter={StaticResource ListToStringConverter}}"
+                                        <Label Text="{Binding Categories, Converter={StaticResource ListToStringConverter}}"
                                                 TextColor="{StaticResource Primary}"/>
-                                          <Label Text="·"
+                                        <Label Text="·"
                                              FontAttributes="Bold"
                                              TextColor="{StaticResource Gray200}"/>
-                                          <Label Text="{Binding PublishedAt, Converter={StaticResource RelativeTimeConverter}}"
+                                        <Label Text="{Binding PublishedAt, Converter={StaticResource RelativeTimeConverter}}"
                                             TextColor="{StaticResource Gray200}"/>
                                     </StackLayout>
 
@@ -86,13 +84,10 @@
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                <CollectionView.Footer>
-                    <!-- For some reason, last item is hidden behind bottom bar. Add blank footer to compensate. -->
-                    <BoxView HeightRequest="100" Color="White"/>
-                </CollectionView.Footer>
             </CollectionView>
 
+            <Button Text="Load more articles" Margin="5,1,5,0"
+                    Command="{Binding LoadNextArticlesCommand}"/>
         </VerticalStackLayout>
-        <!-- END: LATEST NEWS -->
     </ScrollView>
 </ContentPage>
