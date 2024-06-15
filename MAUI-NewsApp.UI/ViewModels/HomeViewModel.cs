@@ -14,7 +14,7 @@ namespace MAUI_NewsApp.UI.ViewModels
         private readonly INewsService newsService;
 
         [ObservableProperty]
-        bool isBusy;
+        bool isBusy = false;
 
         [ObservableProperty]
         bool isRefreshing;
@@ -36,7 +36,7 @@ namespace MAUI_NewsApp.UI.ViewModels
                 return;
 
             IsBusy = true;
-            var result = await newsService.GetArticles(null, "ro", "ro");
+            var result = await newsService.GetArticles(country: "ro", language: "ro");
             nextPage = result.NextPage;
             foreach (var article in result.Articles)
             {
@@ -52,7 +52,7 @@ namespace MAUI_NewsApp.UI.ViewModels
                 return;
 
             IsBusy = true;
-            var result = await newsService.GetArticles(nextPage, "ro", "ro");
+            var result = await newsService.GetArticles(nextPage, country: "ro", language: "ro");
             nextPage = result.NextPage;
             foreach (var article in result.Articles)
             {

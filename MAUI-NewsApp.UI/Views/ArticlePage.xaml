@@ -4,6 +4,11 @@
              xmlns:converters="clr-namespace:MAUI_NewsApp.UI.Converters"
              x:Class="MAUI_NewsApp.UI.Views.ArticlePage"
              Title="">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout Spacing="10">
             <Image Source="{Binding Article.ImageURL}" HeightRequest="300" Aspect="AspectFill"/>
@@ -12,7 +17,7 @@
             FontSize="26"
             Margin="20,10"/>
             <StackLayout Orientation="Horizontal" Margin="20,0" Spacing="10">
-                <Label Text="{Binding Article.PublishedAt}"
+                <Label Text="{Binding Article.PublishedAt, Converter={StaticResource RelativeTimeConverter}}"
                 VerticalOptions="Center"
                 TextColor="{StaticResource Gray400}"/>
             </StackLayout>

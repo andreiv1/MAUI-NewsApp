@@ -28,23 +28,23 @@
             <converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ScrollView>
-        <VerticalStackLayout>
-            <StackLayout Style="{StaticResource HeaderStack}">
-                <Label Text="Latest News" Style="{StaticResource SectionHeading}" />
-            </StackLayout>
+    <Grid RowDefinitions="auto,*" ColumnDefinitions="*">
+        <StackLayout Style="{StaticResource HeaderStack}">
+            <Label Text="Latest News" Style="{StaticResource SectionHeading}" />
+        </StackLayout>
 
 
-
-            <CollectionView ItemsSource="{Binding Articles}"
-                            VerticalScrollBarVisibility="Always">
+        <!--<RefreshView IsRefreshing="{Binding IsRefreshing}" Grid.Row="1"
+     Command="{Binding RefreshCommand}">-->
+        <CollectionView Grid.Row="1"
+            ItemsSource="{Binding Articles}" VerticalScrollBarVisibility="Always" RemainingItemsThreshold="1" RemainingItemsThresholdReachedCommand="{Binding LoadNextArticlesCommand}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Article">
-                        <Border StrokeThickness="0.5">
+                        <Border StrokeThickness="0.5" Margin="0,0,0,3">
                             <ContentView Padding="16">
                                 <ContentView.GestureRecognizers>
                                     <TapGestureRecognizer CommandParameter="{Binding .}" 
-                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomeViewModel}}, Path=OpenArticleCommand}"/>
+                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomeViewModel}}, Path=OpenArticleCommand}"/>
                                 </ContentView.GestureRecognizers>
                                 <Grid ColumnSpacing="16">
                                     <Grid.ColumnDefinitions>
@@ -58,24 +58,24 @@
 
                                     <Frame Padding="0" Grid.Column="0" Grid.RowSpan="3" BorderColor="Transparent" IsClippedToBounds="True">
                                         <Image Source="{Binding ImageURL}"
-                                               Aspect="AspectFill"/>
+                                       Aspect="AspectFill"/>
                                     </Frame>
 
                                     <Label Text="{Binding Title}"
-                                           Grid.Row="0" Grid.Column="1"
-                                                 FontSize="15"/>
+                                   Grid.Row="0" Grid.Column="1"
+                                         FontSize="15"/>
 
                                     <StackLayout Orientation="Horizontal"
-                                           Spacing="4"
-                                           Grid.Row="1"
-                                           Grid.Column="1">
+                                   Spacing="4"
+                                   Grid.Row="1"
+                                   Grid.Column="1">
                                         <Label Text="{Binding Categories, Converter={StaticResource ListToStringConverter}}"
-                                                TextColor="{StaticResource Primary}"/>
+                                        TextColor="{StaticResource Primary}"/>
                                         <Label Text="·"
-                                             FontAttributes="Bold"
-                                             TextColor="{StaticResource Gray200}"/>
+                                     FontAttributes="Bold"
+                                     TextColor="{StaticResource Gray200}"/>
                                         <Label Text="{Binding PublishedAt, Converter={StaticResource RelativeTimeConverter}}"
-                                            TextColor="{StaticResource Gray200}"/>
+                                    TextColor="{StaticResource Gray200}"/>
                                     </StackLayout>
 
 
@@ -84,10 +84,12 @@
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                <!--<CollectionView.Footer>
+                    <Button Text="Load more articles" Margin="5,1,5,0"
+                Command="{Binding LoadNextArticlesCommand}"/>
+                </CollectionView.Footer>-->
             </CollectionView>
+        <!--</RefreshView>-->
 
-            <Button Text="Load more articles" Margin="5,1,5,0"
-                    Command="{Binding LoadNextArticlesCommand}"/>
-        </VerticalStackLayout>
-    </ScrollView>
+    </Grid>
 </ContentPage>

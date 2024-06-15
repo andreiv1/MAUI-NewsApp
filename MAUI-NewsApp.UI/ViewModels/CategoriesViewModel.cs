@@ -1,24 +1,24 @@
-﻿using MAUI_NewsApp.Data.DTO;
+﻿using CommunityToolkit.Mvvm.Input;
+using MAUI_NewsApp.Data.DTO;
 using MAUI_NewsApp.Data.Services;
 using MAUI_NewsApp.Data.Utils;
 using MAUI_NewsApp.UI.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
-    public class CategoriesViewModel : BaseViewModel, ICategoriesViewModel
+    public partial class CategoriesViewModel : BaseViewModel, ICategoriesViewModel
     {
-        private readonly INewsService newsService;
         private ICollection<Category> categories;
+        public ICollection<Category> Categories => categories;
 
-        public CategoriesViewModel(INewsService newsService)
+        public CategoriesViewModel()
         {
-            this.newsService = newsService;
-
             categories = new List<Category>()
             {
                 new Category("Business", MaterialIcons.Business),
@@ -40,6 +40,18 @@ namespace MAUI_NewsApp.UI.ViewModels
             };
         }
 
-        public ICollection<Category> Categories => categories;
+
+        [RelayCommand]
+        private async Task OpenCategoryArticles(Category category)
+        {
+            var query = new Dictionary<string, object>()
+            {
+                { "category", category }
+            };
+
+            await Shell.Current.GoToAsync("CategoryPage", query);
+        }
+
+        
     }
 }

@@ -17,7 +17,7 @@ namespace MAUI_NewsApp.Data.Services
         private const string apiBaseUrl = $"https://newsdata.io/api/1/news";
         private readonly HttpClient httpClient = new();
 
-        public async Task<ArticleResult> GetArticles(string? page = null, string? country = null, string? language = null)
+        public async Task<ArticleResult> GetArticles(string? page = null, string? category = null, string? country = null, string? language = null)
         {
             var builder = new UriBuilder(apiBaseUrl);
             var query = HttpUtility.ParseQueryString(builder.Query);
@@ -27,6 +27,11 @@ namespace MAUI_NewsApp.Data.Services
             if (page != null)
             {
                 query["page"] = page;
+            }
+
+            if (category != null)
+            {
+                query["category"] = category;
             }
 
             if (country != null)
@@ -80,13 +85,5 @@ namespace MAUI_NewsApp.Data.Services
 
             }
         }
-
-        public async Task<ArticleResult> GetArticlesByCategory(string category, string? page = null, string? country = null, string? language = null)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
     }
 }
