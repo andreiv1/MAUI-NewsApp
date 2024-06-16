@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
-    public class IBookmarksViewModel
+    public interface IBookmarksViewModel
     {
+        Task LoadBookmarkedArticles();
     }
 }

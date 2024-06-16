@@ -22,7 +22,6 @@ namespace MAUI_NewsApp.UI.ViewModels
         public HomeViewModel(INewsService newsService)
         {
             this.newsService = newsService;
-
             _ = LoadLatestArticles();
         }
 
@@ -90,6 +89,12 @@ namespace MAUI_NewsApp.UI.ViewModels
             };
 
             await Shell.Current.GoToAsync("ArticlePage", query);
+        }
+
+        public async Task RequestRefreshArticles()
+        {
+            IsRefreshing = true;
+            await RefreshArticles();
         }
 
         

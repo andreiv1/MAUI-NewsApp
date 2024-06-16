@@ -108,11 +108,6 @@
                                        HeightRequest="50"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center" />
-                    <Label Text="Sorry, no articles found."
-                           IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
-                           FontSize="20"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" />
                 </Grid>
                
             </CollectionView.EmptyView>

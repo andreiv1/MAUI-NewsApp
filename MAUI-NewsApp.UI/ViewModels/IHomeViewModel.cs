@@ -5,6 +5,7 @@ namespace MAUI_NewsApp.UI.ViewModels
     public interface IHomeViewModel
     {
         public ICollection<Article> Articles { get; }
-        
+
+        Task RequestRefreshArticles();
     }
 }

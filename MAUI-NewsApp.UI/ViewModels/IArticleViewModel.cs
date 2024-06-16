@@ -13,5 +13,11 @@ namespace MAUI_NewsApp.UI.ViewModels
     {
         public Article Article { get; set; }
         public ICommand OpenLinkCommand { get; }
+
+        public ICommand ShareCommand { get; }
+
+        public ICommand BookmarkCommand { get; }
+
+        public Task<bool> IsBookmarked();
     }
 }

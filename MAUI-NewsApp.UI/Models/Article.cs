@@ -17,6 +17,7 @@ namespace MAUI_NewsApp.UI.Models
         public string Link { get; set; }
         public string ImageURL { get; set; }
 
+        [Ignore]
         public List<string> Categories { get; set; }
 
         public DateTime? PublishedAt { get; set; }

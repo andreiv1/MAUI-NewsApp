@@ -25,6 +25,7 @@ namespace MAUI_NewsApp.UI.Data
         public async Task BookmarkArticleAsync(Article article)
         {
             await Initialize();
+            article.BookmarkedAt = DateTime.Now;
             await connection.InsertAsync(article);
         }
 
@@ -40,6 +41,14 @@ namespace MAUI_NewsApp.UI.Data
         {
             await Initialize();
             await connection.DeleteAsync(article);
+        }
+
+        public async Task<bool> IsBookmarked(Article article)
+        {
+            await Initialize();
+            return await connection.Table<Article>()
+                .Where(a => a.ArticleId == article.ArticleId)
+                .CountAsync() > 0;
         }
     }
 }

@@ -3,16 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:MAUI_NewsApp.UI.Models"
              xmlns:viewmodels="clr-namespace:MAUI_NewsApp.UI.ViewModels"
+             xmlns:converters="clr-namespace:MAUI_NewsApp.UI.Converters"
              x:Class="MAUI_NewsApp.UI.Views.BookmarksPage"
              Title="Bookmarks">
-
-        <Grid RowDefinitions="auto,*">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ListToStringConverter x:Key="ListToStringConverter" />
+            <converters:RelativeTimeConverter x:Key="RelativeTimeConverter" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+        <Grid RowDefinitions="*">
             <!--<Label Text="My articles"
                    Grid.Row="0"
                    Padding="16"
                    FontFamily="NotoSerifBold"
                    FontSize="28" />-->
-        <CollectionView ItemsSource="{Binding Articles}">
+        <CollectionView ItemsSource="{Binding BookmarkedArticles}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Article">
                     <Border StrokeThickness="0.5"
@@ -50,7 +57,9 @@
                                              Spacing="4"
                                              Grid.Row="1"
                                              Grid.Column="1">
-
+                                    <Label Text="·"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource Gray200}" />
                                     <Label Text="{Binding PublishedAt, Converter={StaticResource RelativeTimeConverter}}"
                                            TextColor="{StaticResource Gray200}" />
                                 </StackLayout>
@@ -65,11 +74,11 @@
             <CollectionView.EmptyView>
                 <Grid RowDefinitions="*"
                       ColumnDefinitions="*">
-                    <Label Text="Sorry, no articles found."
-                        
+                    <Label Text="You haven't bookmarked anything yet."
                            FontSize="20"
                            HorizontalOptions="Center"
                            VerticalOptions="Center" />
+                    
                 </Grid>
 
             </CollectionView.EmptyView>

@@ -66,6 +66,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\bookmark_added_20dp.png" />
 	  <None Remove="Resources\Images\bookmark_add_20dp.png" />
+	  <None Remove="Resources\Images\share_20dp.png" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -5,18 +5,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MAUI_NewsApp.UI"
     xmlns:views="clr-namespace:MAUI_NewsApp.UI.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Disabled"
+    >
 
     
     <TabBar>
         <Tab x:Name="HomeTab">
-            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="home"/>
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="home"
+                          Title="Home"/>
         </Tab>
         <Tab x:Name="CategoriesPage">
-            <ShellContent ContentTemplate="{DataTemplate views:CategoriesPage}" Route="categories"/>
+            <ShellContent ContentTemplate="{DataTemplate views:CategoriesPage}" Route="categories"
+                          Title="Categories"/>
         </Tab>
         <Tab x:Name="BookmarksTab">
-            <ShellContent ContentTemplate="{DataTemplate views:BookmarksPage}" Route="bookmarks"/>
+            <ShellContent ContentTemplate="{DataTemplate views:BookmarksPage}" Route="bookmarks"
+                          Title="Bookmarks"/>
         </Tab>
     </TabBar>
 </Shell>

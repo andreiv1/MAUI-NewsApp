@@ -12,10 +12,13 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Share"
+                     IconImageSource="share_20dp.png"
+                     Command="{Binding ShareCommand}"/>
         <ToolbarItem x:Name="bookmarkToolBarItem"
                      Text="Bookmark"
                      IconImageSource="bookmark_add_20dp.png"
-                     
+                     Clicked="bookmarkToolBarItem_Clicked"
                      Command="{Binding BookmarkCommand}" />
     </ContentPage.ToolbarItems>
     <ScrollView>

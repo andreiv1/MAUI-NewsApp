@@ -13,5 +13,7 @@ namespace MAUI_NewsApp.UI.Data
         Task<List<Article>> GetBookmarkedArticles();
 
         Task RemoveBookmark(Article article);
+
+        Task<bool> IsBookmarked(Article article);
     }
 }
