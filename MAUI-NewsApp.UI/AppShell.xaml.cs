@@ -24,6 +24,7 @@ namespace MAUI_NewsApp.UI
         {
             Routing.RegisterRoute(nameof(ArticlePage), typeof(ArticlePage));
             Routing.RegisterRoute(nameof(CategoryPage), typeof(CategoryPage));
+            Routing.RegisterRoute(nameof(BookmarksPage), typeof(BookmarksPage));
         }
     }
 }

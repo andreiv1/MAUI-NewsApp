@@ -10,6 +10,14 @@
             <converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="bookmarkToolBarItem"
+                     Text="Bookmark"
+                     IconImageSource="bookmark_add_20dp.png"
+                     
+                     Command="{Binding BookmarkCommand}" />
+    </ContentPage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout Spacing="10">
             <Image Source="{Binding Article.ImageURL}" HeightRequest="300" Aspect="AspectFill"/>

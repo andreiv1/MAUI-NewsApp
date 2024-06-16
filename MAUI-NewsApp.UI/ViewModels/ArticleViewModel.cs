@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MAUI_NewsApp.UI.Data;
 using MAUI_NewsApp.UI.Models;
 using System.Windows.Input;
 
@@ -8,15 +9,14 @@ namespace MAUI_NewsApp.UI.ViewModels
 {
     public partial class ArticleViewModel : BaseViewModel, IArticleViewModel
     {
-        public ArticleViewModel()
+        private readonly IArticleRepository articleRepository;
+        public ArticleViewModel(IArticleRepository articleRepository)
         {
-        }
-        public ArticleViewModel(Article article)
-        {
-            Article = article;
+            this.articleRepository = articleRepository;
         }
 
-        public Article Article { get; }
+        [ObservableProperty]
+        private Article article;
 
         public ICommand OpenLinkCommand => new RelayCommand(async () =>
         {

@@ -6,18 +6,21 @@ namespace MAUI_NewsApp.UI.Views;
 
 public partial class ArticlePage : ContentPage, IQueryAttributable
 {
-	public ArticlePage(IArticleViewModel articleViewModel)
+    private readonly IArticleViewModel articleViewModel;
+
+    public ArticlePage(IArticleViewModel articleViewModel)
 	{
 		InitializeComponent();
 		this.BindingContext = articleViewModel;
-	}
+        this.articleViewModel = articleViewModel;
+    }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.FirstOrDefault(a => a.Key.Equals("article")).Value is Article a)
         {
-            //TODO - no dependency injection here
-            this.BindingContext = new ArticleViewModel(a);
+            articleViewModel.Article = a;
+            
         }
     }
 }

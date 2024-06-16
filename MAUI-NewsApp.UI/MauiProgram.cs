@@ -1,4 +1,5 @@
 ﻿using MAUI_NewsApp.Data.Services;
+using MAUI_NewsApp.UI.Data;
 using MAUI_NewsApp.UI.ViewModels;
 using MAUI_NewsApp.UI.Views;
 using Microsoft.Extensions.Logging;
@@ -39,12 +40,14 @@ namespace MAUI_NewsApp.UI
             builder.Services.AddTransient<CategoriesPage>();
             builder.Services.AddTransient<CategoryPage>();
             builder.Services.AddTransient<ArticlePage>();
+            builder.Services.AddTransient<BookmarksPage>();
 
             return builder;
         }
         public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<INewsService, NewsDataIoService>();
+            builder.Services.AddSingleton<IArticleRepository, ArticleRepository>();
 
             return builder;
         }
@@ -55,6 +58,7 @@ namespace MAUI_NewsApp.UI
             builder.Services.AddTransient<ICategoriesViewModel, CategoriesViewModel>();
             builder.Services.AddTransient<ICategoryViewModel, CategoryViewModel>();
             builder.Services.AddTransient<IArticleViewModel, ArticleViewModel>();
+            builder.Services.AddTransient<IBookmarksViewModel, BookmarksViewModel>();
 
             return builder;
         }

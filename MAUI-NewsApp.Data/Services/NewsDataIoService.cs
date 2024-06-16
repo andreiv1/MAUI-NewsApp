@@ -7,7 +7,7 @@ namespace MAUI_NewsApp.Data.Services
 {
     public class NewsDataIoService : INewsService
     {
-        private const string apiKey = "pub_45307ca710cbce55937751cdb329b85a276fe";
+        private const string apiKey = "pub_46532bd1c9909d0d04f247db9bee28f97b723";
         private const string apiBaseUrl = $"https://newsdata.io/api/1/news";
         private readonly HttpClient httpClient = new();
 

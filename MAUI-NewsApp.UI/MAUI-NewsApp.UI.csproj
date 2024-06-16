@@ -64,6 +64,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\bookmark_added_20dp.png" />
+	  <None Remove="Resources\Images\bookmark_add_20dp.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Images\bookmarks.png" />
 	  <EmbeddedResource Include="Resources\Images\categories.png" />
 	  <EmbeddedResource Include="Resources\Images\home.png" />
@@ -72,6 +77,8 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
 	</ItemGroup>
 
 	<ItemGroup>

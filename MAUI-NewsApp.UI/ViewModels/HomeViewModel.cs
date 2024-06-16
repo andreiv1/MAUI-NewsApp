@@ -2,10 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using MAUI_NewsApp.Data.Services;
 using MAUI_NewsApp.UI.Models;
-using MAUI_NewsApp.UI.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Windows.Input;
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
