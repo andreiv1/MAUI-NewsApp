@@ -6,6 +6,7 @@
              Title="">
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converters:ListToStringConverter x:Key="ListToStringConverter" />
             <converters:RelativeTimeConverter x:Key="RelativeTimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -15,12 +16,26 @@
             <Label Text="{Binding Article.Title}"
             FontFamily="NotoSerifBold"
             FontSize="26"
-            Margin="20,10"/>
-            <StackLayout Orientation="Horizontal" Margin="20,0" Spacing="10">
+            Margin="20,5"/>
+            <StackLayout Orientation="Horizontal"
+                         Margin="20,0"
+                         Spacing="10"
+                         Grid.Row="1"
+                         Grid.Column="1">
+                <Label Text="{Binding Article.Categories, Converter={StaticResource ListToStringConverter}}"
+                       TextColor="{StaticResource Primary}" />
+                <Label Text="·"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource Gray200}" />
+                <Label Text="{Binding Article.PublishedAt, Converter={StaticResource RelativeTimeConverter}}"
+                       TextColor="{StaticResource Gray200}" />
+            </StackLayout>
+            
+            <!--<StackLayout Orientation="Horizontal" Margin="20,0" Spacing="10">
                 <Label Text="{Binding Article.PublishedAt, Converter={StaticResource RelativeTimeConverter}}"
                 VerticalOptions="Center"
                 TextColor="{StaticResource Gray400}"/>
-            </StackLayout>
+            </StackLayout>-->
             <Label Text="{Binding Article.Description}"
             Margin="20,0"
             FontSize="16"/>

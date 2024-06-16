@@ -37,6 +37,7 @@ namespace MAUI_NewsApp.UI
         {
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<CategoriesPage>();
+            builder.Services.AddTransient<CategoryPage>();
             builder.Services.AddTransient<ArticlePage>();
 
             return builder;
@@ -52,6 +53,7 @@ namespace MAUI_NewsApp.UI
         {
             builder.Services.AddTransient<IHomeViewModel, HomeViewModel>();
             builder.Services.AddTransient<ICategoriesViewModel, CategoriesViewModel>();
+            builder.Services.AddTransient<ICategoryViewModel, CategoryViewModel>();
             builder.Services.AddTransient<IArticleViewModel, ArticleViewModel>();
 
             return builder;

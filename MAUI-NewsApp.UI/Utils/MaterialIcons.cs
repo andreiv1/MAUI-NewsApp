@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MAUI_NewsApp.Data.Utils
+namespace MAUI_NewsApp.UI.Utils
 {
     /// <summary>
     /// The unicode codepoints for each glyph in Material Icons.

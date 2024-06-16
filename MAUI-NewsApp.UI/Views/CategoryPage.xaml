@@ -1,12 +1,105 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MAUI_NewsApp.UI.Models"
+             xmlns:controls="clr-namespace:MAUI_NewsApp.UI.Controls"
+             xmlns:converters="clr-namespace:MAUI_NewsApp.UI.Converters"
+             xmlns:viewmodels="clr-namespace:MAUI_NewsApp.UI.ViewModels"
              x:Class="MAUI_NewsApp.UI.Views.CategoryPage"
              Title="Category">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Shell.SearchHandler>
+        <controls:NewsSearchHandler Placeholder="Search in this category..."
+                                    DisplayMemberName="Title"
+                                    SearchBoxVisibility="Collapsible"
+                                    QueryIcon="search"
+                                    ClearIcon="clear" />
+    </Shell.SearchHandler>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ListToStringConverter x:Key="ListToStringConverter" />
+            <converters:RelativeTimeConverter x:Key="RelativeTimeConverter" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--<VerticalStackLayout Padding="16">-->
+    <Grid RowDefinitions="auto,*">
+        <Label Text="{Binding CategoryName}" Grid.Row="0" Padding="16"
+               FontFamily="NotoSerifBold"
+               FontSize="28" />
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                     Grid.Row="1"
+                     Command="{Binding RefreshArticlesCommand}">
+            <CollectionView ItemsSource="{Binding Articles}"
+                            RemainingItemsThreshold="1"
+                            RemainingItemsThresholdReachedCommand="{Binding LoadNextArticlesCommand}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Article">
+                        <Border StrokeThickness="0.5"
+                                Margin="0,0,0,3">
+                            <ContentView Padding="16">
+                                <ContentView.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CategoryViewModel}}, Path=OpenArticleCommand}" />
+                                </ContentView.GestureRecognizers>
+                                <Grid ColumnSpacing="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="80" />
+                                        <RowDefinition Height="20" />
+                                    </Grid.RowDefinitions>
+
+                                    <Frame Padding="0"
+                                           Grid.Column="0"
+                                           Grid.RowSpan="3"
+                                           BorderColor="Transparent"
+                                           IsClippedToBounds="True">
+                                        <Image Source="{Binding ImageURL}"
+                                               Aspect="AspectFill" />
+                                    </Frame>
+
+                                    <Label Text="{Binding Title}"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           FontSize="15" />
+
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="4"
+                                                 Grid.Row="1"
+                                                 Grid.Column="1">
+    
+                                        <Label Text="{Binding PublishedAt, Converter={StaticResource RelativeTimeConverter}}"
+                                               TextColor="{StaticResource Gray200}" />
+                                    </StackLayout>
+
+
+                                </Grid>
+                            </ContentView>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid RowDefinitions="*"
+                          ColumnDefinitions="*">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                           WidthRequest="50"
+                                           HeightRequest="50"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+                        <!--<Label Text="Sorry, no articles found."
+                               IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                               FontSize="20"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />-->
+                    </Grid>
+                   
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
 </ContentPage>

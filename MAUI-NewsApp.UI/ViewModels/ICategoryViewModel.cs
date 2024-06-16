@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.Input;
+using MAUI_NewsApp.UI.Models;
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
-    interface ICategoryViewModel
+    public interface ICategoryViewModel
     {
+        public Category Category { get; set; }
     }
 }

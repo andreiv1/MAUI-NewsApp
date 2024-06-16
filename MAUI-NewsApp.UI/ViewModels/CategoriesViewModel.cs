@@ -1,14 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using MAUI_NewsApp.Data.DTO;
-using MAUI_NewsApp.Data.Services;
-using MAUI_NewsApp.Data.Utils;
 using MAUI_NewsApp.UI.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MAUI_NewsApp.UI.Utils;
+
 
 namespace MAUI_NewsApp.UI.ViewModels
 {
@@ -52,6 +45,6 @@ namespace MAUI_NewsApp.UI.ViewModels
             await Shell.Current.GoToAsync("CategoryPage", query);
         }
 
-        
+
     }
 }
